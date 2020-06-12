@@ -11,7 +11,7 @@ function create(){
 
 function store(){
     //1. Maak een nieuwe medewerker aan met de data uit het formulier en sla deze op in de database
-    $createEmployee = createEmployee($_POST);
+    $createReserve = createReserve($_POST);
     //2. Bouw een url op en redirect hierheen
    header('location: ' . URL . 'home/index');
 }
@@ -21,8 +21,8 @@ function edit($id){
     
     //2. Geef een view weer voor het updaten en geef de variable met medewerker hieraan mee
 	
-	$employees = getEmployee($id);
-    render('home/update', array('reservering' => $employees));
+	$paarden = getEmployee($id);
+    render('home/update', array('reservering' => $paarden));
 
 }
 
@@ -37,7 +37,7 @@ function delete($id){
     //1. Haal een medewerker op met een specifiek id en sla deze op in een variable
     $employees = getEmployee($id);
     //2. Geef een view weer voor het verwijderen en geef de variable met medewerker hieraan mee
-    render('employee/delete', array('employees' => $employees));
+    render('home/delete', array('reservering' => $paarden));
 }
 
 function destroy($id){
