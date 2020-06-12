@@ -3,6 +3,12 @@
  <p>Je bent nu in home/index.</p>
 </div>
 <?php
-    foreach($data)
+    foreach($paarden as $result){
+       echo "<p>" . $result['namePaard'] . " </p>";
+       echo "<p>" . $result['rasPaard'] . " </p>";
+       echo "<p>" . $result['leeftijdPaard'] . " </p>";
+       echo "<p>" . $result['img'] . " </p>";
+       echo "<p>" . $result['schofthoogte'] . " </p>";
+    }
 
 ?>
