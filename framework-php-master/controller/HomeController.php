@@ -4,6 +4,9 @@ require(ROOT . "model/StudentModel.php");
 function index(){
 	render("home/index", array('paarden'=> getAllHorses()));	
 }
+function reserveringen(){
+	render("home/reservering", array('reservering'=> getAllReserve()));	
+}
 function create(){
     //1. Geef een view weer waarin een formulier staat voor het aanmaken van een medewerker
     render('home/create');
