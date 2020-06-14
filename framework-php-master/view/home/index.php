@@ -4,11 +4,15 @@
 </div>
 <?php
     foreach($paarden as $result){
-       echo "<p>" . $result['namePaard'] . " </p>";
-       echo "<p>" . $result['rasPaard'] . " </p>";
-       echo "<p>" . $result['leeftijdPaard'] . " </p>";
-       echo "<p>" . $result['img'] . " </p>";
-       echo "<p>" . $result['schofthoogte'] . " </p>";
-    }
+        echo "<div>";
+        echo "<img src='../img/" . $result['img'] . "'> </img>";
+       echo "<strong> Naam : " . $result['namePaard'] . " </strong>";
+       echo "<strong> Ras : " . $result['rasPaard'] . " </strong>";
+       echo "<strong> Leeftijd : " . $result['leeftijdPaard'] . " </strong>";
+       echo "<strong> Schofthoogte : " . $result['schofthoogte'] . " </strong>";
+       echo "</div>";
+       echo "<a href='" . URL . "employee/update/ " .  $result['id'] . "'>Wijzigen</a>";
+       echo "<a href='" . URL . "employee/delete/" . $result['id'] . "'>Verwijderen</a>";
+        }
 
 ?>
