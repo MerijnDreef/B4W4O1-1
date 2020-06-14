@@ -23,17 +23,18 @@ function edit($id){
     //1. Haal een medewerker op met een specifiek id en sla deze op in een variable
     
     //2. Geef een view weer voor het updaten en geef de variable met medewerker hieraan mee
+    $updateReserve = updateReserve($_POST);
 	
-	$paarden = getEmployee($id);
-    render('home/update', array('reservering' => $paarden));
+    header('location: ' . URL . 'home/index');
 
 }
 
-function update(){
+function update($id){
     //1. Update een bestaand persoon met de data uit het formulier en sla deze op in de database
-    $updateReserve = updateReserve($_POST);
+   
     //2. Bouw een url en redirect hierheen
-    header('location: ' . URL . 'home/index');
+    $paarden = getReserve($id);
+    render('home/update', array('reservering' => $paarden));
 }
 
 function delete($id){

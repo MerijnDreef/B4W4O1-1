@@ -7,8 +7,9 @@
        echo "<p>" . $result['namePaard'] . " </p>";
        echo "<p>" . $result['rasPaard'] . " </p>";
        echo "<p>" . $result['leeftijdPaard'] . " </p>";
-       echo "<p>" . $result['img'] . " </p>";
+       echo "<img src='../img/" . $result['img'] . "'> </p>";
        echo "<p>" . $result['schofthoogte'] . " </p>";
+
     }
 
 ?>

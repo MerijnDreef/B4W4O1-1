@@ -91,7 +91,7 @@ function createReserve($data){
     try {
 
         $conn = openDataBaseConnection();
-            $insert = $conn->prepare("INSERT INTO reservering (namePaard, rasPaard, leeftijdPaard, namePersoon, telefoonNummer, adres, starttime) VALUES ( :namePaard, :rasPaard, :leeftijdPaard, :namePersoon, :telefoonNummer, :adres, :starttime)");
+            $insert = $conn->prepare("INSERT INTO reservering (namePaard, rasPaard, leeftijdPaard, namePersoon, telefoonNummer, adres, starttime, uren) VALUES ( :namePaard, :rasPaard, :leeftijdPaard, :namePersoon, :telefoonNummer, :adres, :starttime, :uren)");
     
             $insert->bindParam(':namePaard', $data['namePaard']);
 		   $insert->bindParam(':rasPaard', $data['rasPaard']);
@@ -99,7 +99,8 @@ function createReserve($data){
 		   $insert->bindParam(':namePersoon', $data['namePersoon']);
 		   $insert->bindParam(':telefoonNummer', $data['telefoonNummer']);
 		   $insert->bindParam(':adres', $data['adres']);
-		   $insert->bindParam(':starttime', $data['starttime']);
+           $insert->bindParam(':starttime', $data['starttime']);
+           $insert->bindParam(':uren', $data['uren']);
            $conn = null;
             return $insert->execute();
     
@@ -116,7 +117,7 @@ function updateReserve($data){
     try {
 
         $conn = openDataBaseConnection();
-            $insert = $conn->prepare("UPDATE reservering set namePaard = :namePaard, rasPaard = :rasPaard, leeftijdPaard = :leeftijdPaard, namePersoon = :namePersoon, telefoonNummer = :telefoonNummer, adres = :adres, starttime =:starttime WHERE id = :id");
+            $insert = $conn->prepare("UPDATE reservering set namePaard = :namePaard, rasPaard = :rasPaard, leeftijdPaard = :leeftijdPaard, namePersoon = :namePersoon, telefoonNummer = :telefoonNummer, adres = :adres, starttime =:starttime, uren = :uren WHERE id = :id");
             $insert->bindParam(':id', $data['id']);
 			$insert->bindParam(':namePaard', $data['namePaard']);
 			$insert->bindParam(':rasPaard', $data['rasPaard']);
@@ -124,7 +125,8 @@ function updateReserve($data){
 			$insert->bindParam(':namePersoon', $data['namePersoon']);
 			$insert->bindParam(':telefoonNummer', $data['telefoonNummer']);
 			$insert->bindParam(':adres', $data['adres']);
-			$insert->bindParam(':starttime', $data['starttime']);
+            $insert->bindParam(':starttime', $data['starttime']);
+            $insert->bindParam(':uren', $data['uren']);
          $output = $insert->execute();
            $conn = null;
             return $output;
