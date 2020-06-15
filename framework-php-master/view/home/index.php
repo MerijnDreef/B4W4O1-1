@@ -11,8 +11,7 @@
        echo "<strong> Leeftijd : " . $result['leeftijdPaard'] . " </strong>";
        echo "<strong> Schofthoogte : " . $result['schofthoogte'] . " </strong>";
        echo "</div>";
-       echo "<a href='" . URL . "home/update/ " .  $result['id'] . "'>Wijzigen</a>";
-       echo "<a href='" . URL . "home/delete/" . $result['id'] . "'>Verwijderen</a>";
+      
         }
 
 ?>

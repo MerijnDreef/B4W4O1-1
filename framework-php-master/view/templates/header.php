@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Studenten app</title>	
+	<title>Manege app</title>	
 	<link rel="stylesheet" href="<?= URL ?>">
 </head>
 <body>
@@ -11,5 +11,6 @@
 	<ul>
 		<li><a href="<?= URL ?>home/index">Home</a></li>
 		<li><a href="<?= URL ?>home/reservering">Reserveringen</a></li>
+		<li><a href="<?= URL ?>home/create">maak een reservering</a></li>
 	</ul>
 	</nav>

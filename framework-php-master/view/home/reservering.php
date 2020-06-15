@@ -9,7 +9,8 @@
        echo "<p>" . $result['leeftijdPaard'] . " </p>";
        echo "<img src='../img/" . $result['img'] . "'> </p>";
        echo "<p>" . $result['schofthoogte'] . " </p>";
-
+       echo "<a href='" . URL . "home/update/ " .  $result['id'] . "'>Wijzigen</a>";
+       echo "<a href='" . URL . "home/delete/" . $result['id'] . "'>Verwijderen</a>";
     }
 
 ?>

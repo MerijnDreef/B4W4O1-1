@@ -91,11 +91,8 @@ function createReserve($data){
     try {
 
         $conn = openDataBaseConnection();
-            $insert = $conn->prepare("INSERT INTO reservering (namePaard, rasPaard, leeftijdPaard, namePersoon, telefoonNummer, adres, starttime, uren) VALUES ( :namePaard, :rasPaard, :leeftijdPaard, :namePersoon, :telefoonNummer, :adres, :starttime, :uren)");
-    
+            $insert = $conn->prepare("INSERT INTO reservering (namePaard, namePersoon, telefoonNummer, adres, starttime, uren) VALUES ( :namePaard, :rasPaard, :leeftijdPaard, :namePersoon, :telefoonNummer, :adres, :starttime, :uren)");
             $insert->bindParam(':namePaard', $data['namePaard']);
-		   $insert->bindParam(':rasPaard', $data['rasPaard']);
-		   $insert->bindParam(':leeftijdPaard', $data['leeftijdPaard']);
 		   $insert->bindParam(':namePersoon', $data['namePersoon']);
 		   $insert->bindParam(':telefoonNummer', $data['telefoonNummer']);
 		   $insert->bindParam(':adres', $data['adres']);
@@ -117,11 +114,9 @@ function updateReserve($data){
     try {
 
         $conn = openDataBaseConnection();
-            $insert = $conn->prepare("UPDATE reservering set namePaard = :namePaard, rasPaard = :rasPaard, leeftijdPaard = :leeftijdPaard, namePersoon = :namePersoon, telefoonNummer = :telefoonNummer, adres = :adres, starttime =:starttime, uren = :uren WHERE id = :id");
+            $insert = $conn->prepare("UPDATE reservering set namePaard = :namePaard, namePersoon = :namePersoon, telefoonNummer = :telefoonNummer, adres = :adres, starttime =:starttime, uren = :uren WHERE id = :id");
             $insert->bindParam(':id', $data['id']);
 			$insert->bindParam(':namePaard', $data['namePaard']);
-			$insert->bindParam(':rasPaard', $data['rasPaard']);
-			$insert->bindParam(':leeftijdPaard', $data['leeftijdPaard']);
 			$insert->bindParam(':namePersoon', $data['namePersoon']);
 			$insert->bindParam(':telefoonNummer', $data['telefoonNummer']);
 			$insert->bindParam(':adres', $data['adres']);
