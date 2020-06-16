@@ -91,9 +91,9 @@ function createReserve($data){
     try {
 
         $conn = openDataBaseConnection();
-            $insert = $conn->prepare("INSERT INTO reservering (namePaard, namePersoon, telefoonNummer, adres, starttime, uren) VALUES ( :namePaard, :rasPaard, :leeftijdPaard, :namePersoon, :telefoonNummer, :adres, :starttime, :uren)");
-            $insert->bindParam(':namePaard', $data['namePaard']);
-		   $insert->bindParam(':namePersoon', $data['namePersoon']);
+           $insert = $conn->prepare("INSERT INTO reservering (paardId, namePersoon, telefoonNummer, adres, starttime, uren) VALUES (:paardId, :namePersoon, :telefoonNummer, :adres, :starttime, :uren)");
+           $insert->bindParam(':paardId', $data['paardId']);
+           $insert->bindParam(':namePersoon', $data['namePersoon']);
 		   $insert->bindParam(':telefoonNummer', $data['telefoonNummer']);
 		   $insert->bindParam(':adres', $data['adres']);
            $insert->bindParam(':starttime', $data['starttime']);
@@ -114,12 +114,12 @@ function updateReserve($data){
     try {
 
         $conn = openDataBaseConnection();
-            $insert = $conn->prepare("UPDATE reservering set namePaard = :namePaard, namePersoon = :namePersoon, telefoonNummer = :telefoonNummer, adres = :adres, starttime =:starttime, uren = :uren WHERE id = :id");
+            $insert = $conn->prepare("UPDATE reservering set paardId = :paardId, namePersoon = :namePersoon, telefoonNummer = :telefoonNummer, adres = :adres, starttime =:starttime, uren = :uren WHERE id = :id");
             $insert->bindParam(':id', $data['id']);
-			$insert->bindParam(':namePaard', $data['namePaard']);
-			$insert->bindParam(':namePersoon', $data['namePersoon']);
-			$insert->bindParam(':telefoonNummer', $data['telefoonNummer']);
-			$insert->bindParam(':adres', $data['adres']);
+            $insert->bindParam(':paardId', $data['paardId']);
+            $insert->bindParam(':namePersoon', $data['namePersoon']);
+            $insert->bindParam(':telefoonNummer', $data['telefoonNummer']);
+            $insert->bindParam(':adres', $data['adres']);
             $insert->bindParam(':starttime', $data['starttime']);
             $insert->bindParam(':uren', $data['uren']);
          $output = $insert->execute();
