@@ -88,15 +88,18 @@ function getReserve($id){
  }
 
 function createReserve($data){
+   
     try {
-
+        $dt = new DateTime($_POST['startDate'] . 'T' . $_POST['startTime']);
+        $starttime = $dt->format('Y-m-d\TH:i:s.u');
+        print_r($data);
         $conn = openDataBaseConnection();
            $insert = $conn->prepare("INSERT INTO reservering (paardId, namePersoon, telefoonNummer, adres, starttime, uren) VALUES (:paardId, :namePersoon, :telefoonNummer, :adres, :starttime, :uren)");
            $insert->bindParam(':paardId', $data['paardId']);
            $insert->bindParam(':namePersoon', $data['namePersoon']);
 		   $insert->bindParam(':telefoonNummer', $data['telefoonNummer']);
 		   $insert->bindParam(':adres', $data['adres']);
-           $insert->bindParam(':starttime', $data['starttime']);
+           $insert->bindParam(':starttime', $starttime);
            $insert->bindParam(':uren', $data['uren']);
            $conn = null;
             return $insert->execute();
@@ -111,6 +114,9 @@ function createReserve($data){
  }
 
 function updateReserve($data){
+    $dt = new DateTime($_POST['startDate'] . 'T' . $_POST['startTime']);
+    $starttime = $dt->format('Y-m-d\TH:i:s.u');
+
     try {
 
         $conn = openDataBaseConnection();
@@ -120,7 +126,7 @@ function updateReserve($data){
             $insert->bindParam(':namePersoon', $data['namePersoon']);
             $insert->bindParam(':telefoonNummer', $data['telefoonNummer']);
             $insert->bindParam(':adres', $data['adres']);
-            $insert->bindParam(':starttime', $data['starttime']);
+            $insert->bindParam(':starttime', $starttime['starttime']);
             $insert->bindParam(':uren', $data['uren']);
          $output = $insert->execute();
            $conn = null;
