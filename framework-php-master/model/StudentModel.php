@@ -88,37 +88,36 @@ function getReserve($id){
  }
 
 function createReserve($data){
-   
+    if($_POST['startDate'] != NULL && $_POST['startTime'] != NULL && $_POST['namePersoon'] != NULL && $_POST['telefoonNummer'] != NULL && $_POST['uren'] != NULL && $_POST['adres'] != NULL){
     try {
-        $dt = new DateTime($_POST['startDate'] . 'T' . $_POST['startTime']);
+        $dt = new DateTime($data['startDate'] . 'T' . $data['startTime']);
         $starttime = $dt->format('Y-m-d\TH:i:s.u');
-        print_r($data);
         $conn = openDataBaseConnection();
-           $insert = $conn->prepare("INSERT INTO reservering (paardId, namePersoon, telefoonNummer, adres, starttime, uren) VALUES (:paardId, :namePersoon, :telefoonNummer, :adres, :starttime, :uren)");
+           $insert = $conn->prepare("INSERT INTO reservering (id, paardId, namePersoon, telefoonNummer, adres, starttime, uren) VALUES (null, :paardId, :namePersoon, :telefoonNummer, :adres, :starttime, :uren)");
            $insert->bindParam(':paardId', $data['paardId']);
            $insert->bindParam(':namePersoon', $data['namePersoon']);
 		   $insert->bindParam(':telefoonNummer', $data['telefoonNummer']);
 		   $insert->bindParam(':adres', $data['adres']);
            $insert->bindParam(':starttime', $starttime);
            $insert->bindParam(':uren', $data['uren']);
-           $conn = null;
-            return $insert->execute();
-    
+           $insert->execute();
+           $conn = null;    
     }
     catch(PDOException $error) {
         echo 'Connection failed:' . $error->getMessage();
     }
+}
     $conn = null;
     
     return $result;
  }
 
 function updateReserve($data){
-    $dt = new DateTime($_POST['startDate'] . 'T' . $_POST['startTime']);
-    $starttime = $dt->format('Y-m-d\TH:i:s.u');
-
+   
+    if($_POST['startDate'] != NULL && $_POST['startTime'] != NULL && $_POST['namePersoon'] != NULL && $_POST['telefoonNummer'] != NULL && $_POST['uren'] != NULL && $_POST['adres'] != NULL){
     try {
-
+        $dt = new DateTime($_POST['startDate'] . 'T' . $_POST['startTime']);
+        $starttime = $dt->format('Y-m-d\TH:i:s.u');
         $conn = openDataBaseConnection();
             $insert = $conn->prepare("UPDATE reservering set paardId = :paardId, namePersoon = :namePersoon, telefoonNummer = :telefoonNummer, adres = :adres, starttime =:starttime, uren = :uren WHERE id = :id");
             $insert->bindParam(':id', $data['id']);
@@ -126,23 +125,26 @@ function updateReserve($data){
             $insert->bindParam(':namePersoon', $data['namePersoon']);
             $insert->bindParam(':telefoonNummer', $data['telefoonNummer']);
             $insert->bindParam(':adres', $data['adres']);
-            $insert->bindParam(':starttime', $starttime['starttime']);
+            $insert->bindParam(':starttime', $starttime);
             $insert->bindParam(':uren', $data['uren']);
-         $output = $insert->execute();
-           $conn = null;
-            return $output;
+            $insert->execute();
+            $conn = null;
+            // return $output;
     
     }
+
     catch(PDOException $error) {
         echo 'Connection failed:' . $error->getMessage();
     }
+}
     $conn = null;
     
     return $result;
  }
 
  function deleteReserve($id){
-    try {
+    if($_POST['input'] == 'bevestigd')   
+     try {
 
         $conn = openDataBaseConnection();
             $insert = $conn->prepare("DELETE FROM reservering WHERE id = :id");
@@ -155,6 +157,7 @@ function updateReserve($data){
     catch(PDOException $error) {
         echo 'Connection failed:' . $error->getMessage();
     }
+}
     $conn = null;
     
     return $result;
