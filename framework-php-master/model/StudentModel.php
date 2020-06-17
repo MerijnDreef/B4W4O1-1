@@ -143,7 +143,7 @@ function updateReserve($data){
  }
 
  function deleteReserve($id){
-    if($_POST['input'] == 'bevestigd')   
+    if($_POST['input'] == 'bevestigd') {  
      try {
 
         $conn = openDataBaseConnection();
